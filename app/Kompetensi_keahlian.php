@@ -11,6 +11,21 @@ class Kompetensi_keahlian extends Model
  
     public function bidang_studi()
     {
-    	return $this->belongsTo('App\BidangStudi');
+    	return $this->belongsTo('App\BidangStudi','bidang_studi_id');
+    }
+
+    public function guru()
+    {
+    	return $this->hasMany('App\Guru','guru_id');
+    }
+
+    public function siswa()
+    {
+    	return $this->hasMany('App\Siswa','siswa_id');
+    }
+
+    public function standar_kompetensi()
+    {
+    	return $this->hasMany('App\Standar_kompetensi','standar_kompetensi_id');
     }
 }
