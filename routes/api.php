@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('user','UserController');
+Route::resource('bidang_studi','Bidang_studiController');
