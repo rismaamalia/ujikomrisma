@@ -44,8 +44,9 @@ class Kompetensi_keahlianController extends Controller
     public function store(Request $request)
     {
         $kompetensi_keahlian = new Kompetensi_keahlian();
+        $kompetensi_keahlian->kompetensi_kode = $request->kompetensi_kode;
         $kompetensi_keahlian->bidang_kode = $request->bidang_kode;
-        $kompetensi_keahlian->bidang_nama = $request->bidang_nama;
+        $kompetensi_keahlian->kompetensi_nama = $request->kompetensi_nama;
         $kompetensi_keahlian->save();
 
         $response = [
