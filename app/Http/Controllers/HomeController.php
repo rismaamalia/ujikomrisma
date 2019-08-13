@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laratrust\LaratrustFacades as Laratrust;
+use Laratrust\LaratrustFacade as Laratrust;
 
 class HomeController extends Controller
 {
@@ -39,6 +39,6 @@ class HomeController extends Controller
     }
 
     Protected function membersDashboard(){
-        return view('home');
+        return redirect('home');
     }
 }
