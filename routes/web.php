@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +19,8 @@ Route::get('/', function () {
 Route::group(
     ['prefix' => 'backend','middleware' =>['auth','role:admin']],function () {
         Route::get('/', function () {
-            return view('backend');
+            return view('hallo');
         });
-        Route::resource('bidang_studi','Bidang_studiController');
         Route::resource('user','UserController');
         // Route::resource('artikel','Api\ArtikelController');
     }
