@@ -15,12 +15,12 @@ class Bidang_studiController extends Controller
     public function index()
     {
      $bidang_studi = Bidang_studi::all();
-     $response = [
-        'success' => true,
-        'data' => $bidang_studi,
-        'message' =>'berhasil'
-    ];
-    return response()->json($response, 200);
+    //  $response = [
+    //     'success' => true,
+    //     'data' => $bidang_studi,
+    //     'message' =>'berhasil'
+    // ];
+    // return response()->json($response, 200);
     return view('backend.bidang_studi.index', compact('bidang_studi'));   
     }
 
@@ -42,18 +42,19 @@ class Bidang_studiController extends Controller
      */
     public function store(Request $request)
     {
-        $bidang_studi = new Bidang_Studi();
+        $bidang_studi = new Bidang_studi();
         $bidang_studi->bidang_kode = $request->bidang_kode;
         $bidang_studi->bidang_nama = $request->bidang_nama;
         $bidang_studi->save();
 
-        $response = [
-                'success' => true,
-                'data' => $bidang_studi,
-                'message' =>'Bidang Studi berhasil ditambahkan'
-            ];
-           return response()->json($response, 200);
-           return view('backend.bidang_studi.index', compact('bidang_studi'));
+        // $response = [
+        //         'success' => true,
+        //         'data' => $bidang_studi,
+        //         'message' =>'Bidang Studi berhasil ditambahkan'
+        //     ];
+        //    return response()->json($response, 200);
+           return redirect()->route('backend.bidang-studi.index');
+        
     }
 
     /**
@@ -64,7 +65,8 @@ class Bidang_studiController extends Controller
      */
     public function show($id)
     {
-        //
+        $bidang_studi = Bidang_studi::findOrFail($id);
+        return view('backend.bidang_studi.show',compact('bidang_studi'));
     }
 
     /**
@@ -93,13 +95,13 @@ class Bidang_studiController extends Controller
         $bidang_studi->bidang_nama = $request->bidang_nama;
         $bidang_studi->save();
 
-        $response = [
-                'success' => true,
-                'data' => $bidang_studi,
-                'message' =>'Bidang Studi berhasil ditambahkan'
-            ];
-           return response()->json($response, 200);
-           return view('backend.bidang_studi.index', compact('bidang_studi'));
+        // $response = [
+        //         'success' => true,
+        //         'data' => $bidang_studi,
+        //         'message' =>'Bidang Studi berhasil ditambahkan'
+        //     ];
+        //    return response()->json($response, 200);
+        return redirect()->route('backend.bidang-studi.index');
     }
 
     /**
@@ -110,14 +112,11 @@ class Bidang_studiController extends Controller
      */
     public function destroy($id)
     {
-        $bidang_studi = Bidang_studi::find($id);
-        $bidang_studi->delete();
-         $response = [
-                'success' => true,
-                'data' => $kategori,
-                'message' =>'kategori berhasil dihapus'
-            ];
-            return response()->json($response, 200);
-             return redirect()->route('backend.bidang_studi.indebackend.bidang_studi.inde');
+        $bidang_studi = Bidang_studi::findorFail($id)->delete();
+        // Session::flash("flash_notification",[
+        //     "level" => "success",
+        //     "message" =>"DATA BERHASIL DI HAPUS"
+        // ]);
+        return redirect()->route('backend.bidang-studi.index');
     }
 }

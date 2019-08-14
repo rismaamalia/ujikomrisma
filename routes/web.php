@@ -17,12 +17,16 @@ Route::get('/', function () {
 });
 
 Route::group(
-    ['prefix' => 'backend','middleware' =>['auth','role:admin']],function () {
+    ['prefix' => 'admin','as'=>'backend.','middleware' =>['auth','role:admin']],function () {
         Route::get('/', function () {
             return view('hallo');
         });
+        Route::get('/home', function(){
+            return view('backend.index');
+        });
         Route::resource('user','UserController');
-        // Route::resource('artikel','Api\ArtikelController');
+        Route::resource('bidang-studi','Bidang_studiController');
+        Route::resource('kompetensi-keahlian','Kompetensi_keahlianController');
     }
 );
 

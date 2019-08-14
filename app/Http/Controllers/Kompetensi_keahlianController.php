@@ -15,12 +15,12 @@ class Kompetensi_keahlianController extends Controller
     public function index()
     {
         $kompetensi_keahlian = Kompetensi_keahlian::all();
-        $response = [
-            'success' => true,
-            'data' => $kompetensi_keahlian,
-            'message' =>'berhasil'
-        ];
-        return response()->json($response, 200);
+        // $response = [
+        //     'success' => true,
+        //     'data' => $kompetensi_keahlian,
+        //     'message' =>'berhasil'
+        // ];
+        // return response()->json($response, 200);
         return view('backend.kompetensi_keahlian.index', compact('kompetensi_keahlian'));   
         
     }
@@ -32,7 +32,7 @@ class Kompetensi_keahlianController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.kompetensi_keahlian.create'); 
     }
 
     /**
@@ -45,16 +45,17 @@ class Kompetensi_keahlianController extends Controller
     {
         $kompetensi_keahlian = new Kompetensi_keahlian();
         $kompetensi_keahlian->kompetensi_kode = $request->kompetensi_kode;
-        $kompetensi_keahlian->bidang_kode = $request->bidang_kode;
+        $kompetensi_keahlian->bidang_studi_id = $request->bidang_studi_id;
         $kompetensi_keahlian->kompetensi_nama = $request->kompetensi_nama;
         $kompetensi_keahlian->save();
 
-        $response = [
-                'success' => true,
-                'data' => $kompetensi_keahlian,
-                'message' =>'Bidang Studi berhasil ditambahkan'
-            ];
-           return response()->json($response, 200);
+        // $response = [
+        //         'success' => true,
+        //         'data' => $kompetensi_keahlian,
+        //         'message' =>'Bidang Studi berhasil ditambahkan'
+        //     ];
+        //    return response()->json($response, 200);
+        return redirect()->route('backend.kompetensi-keahlian.index');
     }
 
     /**
