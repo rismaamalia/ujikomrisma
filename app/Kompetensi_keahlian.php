@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kompetensi_keahlian extends Model
 {
-    Protected $fillable = ['bidang_kode','bidang_nama'];
+    Protected $fillable = ['bidang_kode','kompetensi_kode','nama_kompetensi'];
     Public $timestamps = true;
  
     public function bidang_studi()

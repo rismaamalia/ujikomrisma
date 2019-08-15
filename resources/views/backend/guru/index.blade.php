@@ -5,13 +5,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 
-                <div class="card-header">Komptensi Keahlian</div>
+                <div class="card-header">Guru</div>
                 <div class="card-body">
                 <br>
-                    <center> <a href="{{ route('backend.kompetensi-keahlian.create') }}"
+                    <center> <a href="{{ route('backend.guru.create') }}"
                         class="btn btn-outline-primary">Tambah</a>
                     </center>
                 <br>
@@ -21,33 +21,39 @@
                          <thead class="thead-danger">
                        <tr>
                            <th>No</th>
-                           <th>Kode Kompetensi</th>
-                           <th>Kode Bidang Studi</th>
-                           <th>Nama Kompetensi</th>
+                           <th>Kode Guru</th>
+                           <th>Kode Kompetensi Keahlian</th>
+                           <th>Nip</th>
+                           <th>Nama</th>
+                           <th>Alamat</th>
+                           <th>Telp</th>
 
                            <th colspan="3">Aksi</th>
                        </tr>
                        @php $no =1; @endphp
-                       @foreach ($kompetensi_keahlian as $data)
+                       @foreach ($guru as $data)
                        <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $data->kompetensi_kode}}</td>
-                            <td>{{ $data->bidang_studi_id }}</td>
-                            <td>{{ $data->kompetensi_nama }}</td>
+                            <td>{{ $data->guru_kode}}</td>
+                            <td>{{ $data->kompetensi_keahlian->kompetensi_kode }}</td>
+                            <td>{{ $data->guru_nip }}</td>
+                            <td>{{ $data->guru_nama }}</td>
+                            <td>{{ $data->guru_alamat }}</td>
+                            <td>{{ $data->guru_tlpn }}</td>
     
                             
                             <td>
-                                <a href="{{ route('backend.kompetensi-keahlian.edit',$data->id) }}" class="btn btn-outline-success">
+                                <a href="{{ route('backend.guru.edit',$data->id) }}" class="btn btn-outline-success">
                                             Edit </a>
                             </td>
                             
                             <td>
-                                <a href="{{ route('backend.kompetensi-keahlian.show',$data->id) }}" class="btn btn-outline-info">
+                                <a href="{{ route('backend.guru.show',$data->id) }}" class="btn btn-outline-info">
                                             Detail </a>
                             </td>        
                             
                             <td>
-                                <form action="{{ route('backend.kompetensi-keahlian.destroy',$data->id) }}" method="post">
+                                <form action="{{ route('backend.guru.destroy',$data->id) }}" method="post">
                                     @csrf
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button class="btn btn-outline-danger" type="submit">Hapus

@@ -27,6 +27,7 @@ Route::group(
         Route::resource('user','UserController');
         Route::resource('bidang-studi','Bidang_studiController');
         Route::resource('kompetensi-keahlian','Kompetensi_keahlianController');
+        Route::resource('guru','GuruController');
     }
 );
 

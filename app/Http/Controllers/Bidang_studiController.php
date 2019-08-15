@@ -53,7 +53,7 @@ class Bidang_studiController extends Controller
         //         'message' =>'Bidang Studi berhasil ditambahkan'
         //     ];
         //    return response()->json($response, 200);
-           return redirect()->route('backend.bidang-studi.index');
+        return redirect()->route('backend.bidang-studi.index');
         
     }
 

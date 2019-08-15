@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Kompetensi_keahlian;
+use App\Guru;
 
 class GuruController extends Controller
 {
@@ -13,7 +15,14 @@ class GuruController extends Controller
      */
     public function index()
     {
-        //
+        $guru = Guru::all();
+        // $response = [
+        //     'success' => true,
+        //     'data' => $kompetensi_keahlian,
+        //     'message' =>'berhasil'
+        // ];
+        // return response()->json($response, 200);
+        return view('backend.guru.index', compact('guru'));   
     }
 
     /**
@@ -23,7 +32,9 @@ class GuruController extends Controller
      */
     public function create()
     {
-        //
+        $kompetensi_keahlian = Kompetensi_keahlian::all();
+        $guru = Guru::all();
+        return view('backend.guru.create',compact('kompetensi_keahlian','guru'));
     }
 
     /**
@@ -34,7 +45,16 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $guru = new Guru();
+        $guru->guru_kode = $request->guru_kode;
+        $guru->kompetensi_keahlian_id = $request->kompetensi_keahlian_id;
+        $guru->guru_nip = $request->guru_nip;
+        $guru->guru_nama = $request->guru_nama;
+        $guru->guru_alamat = $request->guru_alamat;
+        $guru->guru_tlpn = $request->guru_tlpn;
+        $guru->save();
+
+        return redirect()->route('backend.guru.index');
     }
 
     /**
@@ -56,7 +76,9 @@ class GuruController extends Controller
      */
     public function edit($id)
     {
-        //
+        $guru = Guru::findOrFail($id);
+        $kompetensi_keahlian = Kompetensi_keahlian::all();
+        return view('backend.guru.edit',compact('kompetensi_keahlian','guru'));
     }
 
     /**
@@ -68,7 +90,16 @@ class GuruController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $guru = Guru::findOrFail($id);
+        $guru->guru_kode = $request->guru_kode;
+        $guru->kompetensi_keahlian_id = $request->kompetensi_keahlian_id;
+        $guru->guru_nip = $request->guru_nip;
+        $guru->guru_nama = $request->guru_nama;
+        $guru->guru_alamat = $request->guru_alamat;
+        $guru->guru_tlpn = $request->guru_tlpn;
+        $guru->save();
+
+        return redirect()->route('backend.guru.index');
     }
 
     /**

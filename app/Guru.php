@@ -11,7 +11,7 @@ class Guru extends Model
  
     public function kompetensi_keahlian()
     {
-    	return $this->belongsTo('App\Kompetensi_keahlian');
+    	return $this->belongsTo('App\Kompetensi_keahlian','kompetensi_keahlian_id');
     }
 
     public function nilai()
